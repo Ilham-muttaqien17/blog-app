@@ -1,0 +1,29 @@
+<h1 class="text-center font-bold text-2xl">My Posts</h1>
+  <% if user_signed_in? %>
+    <%= link_to "Create new post", new_post_path, class: "btn btn-primary w-[200px]" %>
+  <% end %>
+
+  <ul class="flex flex-col gap-y-4">
+  <%  @posts.each do | post | %>
+    <div class="card w-96 bg-base-100 shadow-xl w-8/12 mx-auto">
+      <div class="card-body">
+        <h2 class="card-title"><%= post.title %></h2>
+        <p><%= post.body %></p>
+        <% if user_signed_in? %>
+          <form action="/comments" method="post" class="mt-8 flex items-center">
+            <input type="hidden" name="post_id" id="post_id" value="<%= post.id %>">
+            <input class="border border-violet-500 rounded-md w-full mr-2" type="text" name="body" id="body">
+            <button type="submit" class="bg-violet-800 text-white py-2 px-6 rounded-md">Reply</button>
+          </form>
+        <% end %>
+        <div class="flex items-center justify-between mt-8">
+          <%= link_to "Cek komentar", post_path(post.id), class: "text-violet-700 font-semibold" %>
+          <div class="flex items-center space-x-2">
+            <%= link_to "Update", edit_post_path(post), class: "text-violet-800 font-semibold" %>
+            <%= link_to "Delete", post_path(post),  class: "text-red-500 font-semibold", data: {turbo_method: :delete, 'turbo-confirm': 'Are you sure?', :id => post.id } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  </ul>

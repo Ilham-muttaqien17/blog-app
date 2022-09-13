@@ -1,0 +1,41 @@
+<div class="navbar bg-base-100">
+  <div class="flex-1">
+    <a class="btn btn-ghost normal-case text-xl">daisyUI</a>
+  </div>
+  <div class="flex-none">
+    <ul class="menu menu-horizontal p-0">
+      <li>
+        <%= link_to "Home", root_path%>
+      </li>
+      <li>
+        <%= link_to "Post", posts_path%>
+      </li>
+      <li tabindex="0">
+        <a>
+          Account
+          <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
+        </a>
+        <ul class="p-2 bg-base-100">
+          <% if user_signed_in? %>
+            <li>
+              <%= link_to "Edit Profile", edit_user_registration_path %>
+            </li>
+            <li>
+              <%= link_to "My Posts", user_post_path(current_user.id), method: :get %>
+            </li>
+            <li>
+              <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+            </li>
+          <% else %>
+            <li>        
+              <%= link_to "Sign In", new_user_session_path %>
+            </li>
+            <li>
+              <%= link_to "Sign Up", new_user_registration_path %>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>

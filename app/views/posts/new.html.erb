@@ -1,0 +1,12 @@
+<h2 class="text-center font-bold text-2xl">Create new Post</h2>
+<form action="/posts" class="container mx-auto flex flex-col space-y-4" method="POST">
+  <div class="flex flex-col">
+    <label for="title">Title: </label>
+    <input class="border border-violet-500 rounded-md" type="text" name="title" id="title">
+  </div>
+  <div class="flex flex-col">
+    <label for="body">Your content: </label>
+    <textarea class="p-2 border border-violet-500 rounded-md" name="body" id="body" cols="30" rows="10"></textarea>
+  </div>
+  <button class="bg-violet-600 text-white rounded-md w-[100px] ml-auto mt-10 py-2" type="submit">Post</button>
+</form>
