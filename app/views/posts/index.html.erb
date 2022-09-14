@@ -6,6 +6,8 @@
   <h1 class="text-center font-bold text-2xl">All Posts</h1>
   <ul class="flex flex-col gap-y-4">
   <%  @posts.each do | post | %>
+    <% p = Post.find(post.id) %>
+    <% comment_count = p.comments.all.count %>
     <div class="card w-96 bg-base-100 shadow-xl w-8/12 mx-auto">
       <div class="card-body">
         <h2 class="card-title"><%= post.title %></h2>
@@ -17,7 +19,9 @@
             <button type="submit" class="bg-violet-800 text-white py-2 px-6 rounded-md">Reply</button>
           </form>
         <% end %>
-        <%= link_to "Cek komentar", post_path(post.id), class: "text-violet-700 font-semibold" %>
+        <% if comment_count > 0 %>
+          <%= link_to "Cek komentar(#{comment_count})", post_path(post.id), class: "text-violet-700 font-semibold" %>
+        <% end %>
       </div>
     </div>
   <% end %>
