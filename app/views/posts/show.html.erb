@@ -22,7 +22,7 @@
     <% @comments.each do | comment | %>
       <div class="card w-96 bg-base-100 shadow-xl w-full">
         <div class="card-body">
-          <h2 class="card-title"><%= "User id: #{comment.user_id}" %></h2>
+          <h2 class="card-title"><%= comment.user.email %></h2>
           <p><%= comment.body %></p>
           <div class="card-actions justify-between mt-8">
             <p class="text-gray-400"><%= comment.created_at %></p>
