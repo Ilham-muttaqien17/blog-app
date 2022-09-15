@@ -15,17 +15,17 @@ class PostsController < ApplicationController
   def show 
     @post = Post.find(params[:id])
     @comments = @post.comments.all
-    # binding.pry
   end
 
   def create 
     @post = Post.create(posts_params.merge(user_id: current_user.id))
-    # binding.pry
 
     if @post.valid?
+      flash[:notice] = "Berhasil menambahkan postingan"
       redirect_to posts_path
     else
-      redirect_to new_post_url, alert: "Gagal menambahkan post baru"
+      flash[:alert] = "Gagal menambahkan post baru"
+      redirect_to new_post_url
     end
 
   end
@@ -33,6 +33,10 @@ class PostsController < ApplicationController
   def update 
     @post = Post.find(params[:id])
     if @post.update(posts_params)
+      flash[:notice] = "Berhasil memperbarui postingan"
+      redirect_to user_post_path(current_user.id)
+    else
+      flash[:alert] = "Gagal memperbarui postingan"
       redirect_to user_post_path(current_user.id)
     end
   end
@@ -45,13 +49,13 @@ class PostsController < ApplicationController
     @post = current_user.posts.find(params[:id])
     if @post.present?
       @post.destroy
+      flash[:notice] = "Berhasil menghapus postingan"
       redirect_to posts_path
     end
   end
 
   def user_posts 
     user = User.find(params[:user_id])
-    # binding.pry
     @posts = user.posts.all.order("updated_at desc")
     
     if !@posts.empty?
