@@ -8,7 +8,7 @@
   <%  @posts.each do | post | %>
     <% p = Post.find(post.id) %>
     <% comment_count = p.comments.all.count %>
-    <div class="card w-96 bg-base-100 shadow-xl w-8/12 mx-auto">
+    <div class="card bg-base-100 shadow-xl w-8/12 mx-auto">
       <div class="card-body">
         <h2 class="card-title"><%= post.title %></h2>
         <p><%= post.body %></p>
