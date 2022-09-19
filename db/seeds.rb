@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+user = User.create(email: "default@gmail.com", password: "123123", confirmed_at: DateTime.now)
+user_id = User.last.id
+Post.create(title: "Default Title", body: "Default Body", user_id: user_id);
