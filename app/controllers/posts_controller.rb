@@ -3,6 +3,7 @@ class PostsController < ApplicationController
 
   def index 
     @posts = Post.order("updated_at desc")
+    @comment = Comment.new
 
     if !@posts.empty?
       respond('index', data: @posts)

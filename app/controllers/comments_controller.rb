@@ -2,9 +2,9 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!, except: %i[ index show ]
 
   def create
-    @comment = Comment.create(comments_params.merge(user_id: current_user.id, post_id: params[:post_id]))
+    @comment = Comment.create(comments_params.merge(user_id: current_user.id))
     if @comment.valid?
-      redirect_to post_path(params[:post_id])
+      redirect_to post_path(@comment.post_id)
     else
       render :new, status: :unprocessable_entity
     end
@@ -32,6 +32,6 @@ class CommentsController < ApplicationController
   private
 
   def comments_params 
-    params.permit(:body)
+    params.require(:comment).permit(:body, :post_id)
   end
 end

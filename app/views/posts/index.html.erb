@@ -13,11 +13,11 @@
         <h2 class="card-title"><%= post.title %></h2>
         <p><%= post.body %></p>
         <% if user_signed_in? %>
-          <form action="/comments" method="post" class="mt-8 flex items-center">
-            <input type="hidden" name="post_id" id="post_id" value="<%= post.id %>">
-            <input class="border border-violet-500 rounded-md w-full mr-2" type="text" name="body" id="body">
-            <button type="submit" class="bg-violet-800 text-white py-2 px-6 rounded-md">Reply</button>
-          </form>
+          <%= form_with model: @comment, url: "/comments", class: "mt-8 flex items-center",  method: :post do |form| %>
+            <%= form.hidden_field :post_id, value: post.id %>
+            <%= form.text_field :body, class: "border border-violet-500 rounded-md w-full mr-2" %>
+            <%= form.button "Reply", class: "bg-violet-800 text-white py-2 px-6 rounded-md"%>
+          <% end %>
         <% end %>
         <div class="mt-2 text-sm text-end text-gray-400">
           <p>By: <%= post.user.email %></p>

@@ -1,6 +1,6 @@
 <h2 class="text-center font-bold text-2xl">Update Comment</h2>
-<%= form_with url: "/comments/#{@comment.id}", class: "container mx-auto flex flex-col space-y-4",  method: :put do |form| %>
+<%= form_with model: @comment, url: "/comments/#{@comment.id}", class: "container mx-auto flex flex-col space-y-4",  method: :put do |form| %>
   <%= form.label :body, "Your comment :"%>
   <%= form.text_area :body, size: "60x10", class: "p-2 border border-violet-500 rounded-md", value: @comment.body %>
-  <%= form.button class: "bg-violet-600 text-white rounded-md w-[100px] ml-auto mt-10 py-2"%>
+  <%= form.button "Update", class: "bg-violet-600 text-white rounded-md w-[100px] ml-auto mt-10 py-2"%>
 <% end %>
