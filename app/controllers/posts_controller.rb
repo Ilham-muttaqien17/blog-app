@@ -17,6 +17,10 @@ class PostsController < ApplicationController
     @comments = @post.comments.all
   end
 
+  def new 
+    @post = Post.new
+  end
+
   def create 
     @post = Post.create(posts_params.merge(user_id: current_user.id))
 
@@ -68,7 +72,7 @@ class PostsController < ApplicationController
   private
 
   def posts_params
-    params.permit(:title, :body)
+    params.require(:post).permit(:title, :body)
   end
 
   def respond(path, data: [], **args)

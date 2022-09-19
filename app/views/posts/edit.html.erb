@@ -1,5 +1,5 @@
 <h2 class="text-center font-bold text-2xl">Update Post</h2>
-<%= form_with url: "/posts/#{@post.id}", class: "container mx-auto flex flex-col space-y-4",  method: :put do |form| %>
+<%= form_with model: @post, url: "/posts/#{@post.id}", class: "container mx-auto flex flex-col space-y-4",  method: :put do |form| %>
   <%= form.label :title, "Title :"%>
   <%= form.text_field :title, class: "p-2 border border-violet-500 rounded-md", value: @post.title %>
   <%= form.label :body, "Your content :"%>
