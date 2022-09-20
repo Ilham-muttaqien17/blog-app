@@ -74,6 +74,7 @@ group :test do
   gem "webdrivers"
   gem "rspec-rails"
   gem 'simplecov'
+  gem "cucumber"
 end
 
 gem "tailwindcss-rails", "~> 2.0"
