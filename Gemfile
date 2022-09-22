@@ -74,7 +74,8 @@ group :test do
   gem "webdrivers"
   gem "rspec-rails"
   gem 'simplecov'
-  gem "cucumber"
+  gem "cucumber-rails", require: false
+  gem "database_cleaner"
 end
 
 gem "tailwindcss-rails", "~> 2.0"
